@@ -39,6 +39,30 @@ namespace WpfApplicationEntity
                     objectMyDBContext.SaveChanges();
                 }
             }
+            this.ShowAll();
+        }
+        #region Группа
+        private void addGroupButton_Click(object sender, RoutedEventArgs e)
+        {
+            Forms.GroupWindow g = new Forms.GroupWindow(true);
+            if (g.ShowDialog() == true)
+                this.ShowAll();
+        }
+        #endregion
+        private void ShowAll()
+        {
+            try
+            {
+                using (WFAEntity.API.MyDBContext objectMyDBContext = 
+                    new WFAEntity.API.MyDBContext())
+                {
+                    gropiesGrid.ItemsSource = WFAEntity.API.DatabaseRequest.GetGroups(objectMyDBContext);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ОШИБКА", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
