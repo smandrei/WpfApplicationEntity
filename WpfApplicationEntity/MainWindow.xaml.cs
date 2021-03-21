@@ -23,5 +23,22 @@ namespace WpfApplicationEntity
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (WFAEntity.API.MyDBContext objectMyDBContext = new WFAEntity.API.MyDBContext())
+            {
+                if (objectMyDBContext.Database.Exists() == false)
+                {
+                    objectMyDBContext.Database.Create();
+                    WFAEntity.API.User objectUser = new WFAEntity.API.User();
+                    objectUser.Name = "user name";
+                    objectUser.Login = "user";
+                    objectUser.Password = "1111";
+                    objectMyDBContext.Users.Add(objectUser);
+                    objectMyDBContext.SaveChanges();
+                }
+            }
+        }
     }
 }
