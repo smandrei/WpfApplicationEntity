@@ -67,6 +67,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="API\DatabaseRequest.cs" />
+    <Compile Include="API\Group.cs" />
+    <Compile Include="API\MyDBContext.cs" />
+    <Compile Include="API\Student.cs" />
+    <Compile Include="API\User.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
