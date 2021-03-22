@@ -19,24 +19,44 @@ namespace WpfApplicationEntity.Forms
     public partial class GroupWindow : Window
     {
         private bool add_edit;
+        private int id;
         public GroupWindow()
         {
             InitializeComponent();
         }
-        public GroupWindow(bool add_edit)
+        public GroupWindow(bool add_edit, int id = 0)
         {
             InitializeComponent();
             this.add_edit = add_edit;
+            this.id = id;
+            if (this.add_edit == false)
+            {
+                using (WFAEntity.API.MyDBContext objectMyDBContext =
+                            new WFAEntity.API.MyDBContext())
+                {
+                    WFAEntity.API.Group group = WFAEntity.API.DatabaseRequest.GetGroupById(objectMyDBContext, this.id);
+                    textBlockAddEditGroup.Text = group.Name;
+                }
+                ButtonAddEditGroup.Content = "Изменить";
+            }
         }
 
+        private bool IsDataCorrcet()
+        {
+            if (textBlockAddEditGroup.Text != string.Empty)
+                return true;
+            return false;
+        }
         private void ButtonAddEditGroup_Click(object sender, RoutedEventArgs e)
         {
+            WFAEntity.API.Group objectGroup = new WFAEntity.API.Group();
             if (this.add_edit == true)
-                if (textBlockAddEditGroup.Text != string.Empty)
+            {
+                textBlockAddEditGroup.Text = string.Empty;
+                objectGroup.Name = textBlockAddEditGroup.Text;
+                try
                 {
-                    WFAEntity.API.Group objectGroup = new WFAEntity.API.Group();
-                    objectGroup.Name = textBlockAddEditGroup.Text;
-                    try
+                    if (this.IsDataCorrcet() == true)
                     {
                         using (WFAEntity.API.MyDBContext objectMyDBContext =
                             new WFAEntity.API.MyDBContext())
@@ -47,16 +67,44 @@ namespace WpfApplicationEntity.Forms
                         MessageBox.Show("Группа добавлена");
                         this.DialogResult = true;
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message, "ОШИБКА", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Ввод данных", "ОШИБКА", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Заполните все поля!", "Ошибка!");
-                    this.DialogResult = false;
+                    MessageBox.Show(ex.Message, "ОШИБКА", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+            else
+            {
+                try
+                {
+                    if (this.IsDataCorrcet())
+                    {
+                        using (WFAEntity.API.MyDBContext objectMyDBContext =
+                            new WFAEntity.API.MyDBContext())
+                        {
+                            WFAEntity.API.Group group = new WFAEntity.API.Group();
+                            group = WFAEntity.API.DatabaseRequest.GetGroupById(objectMyDBContext, this.id);
+                            group.Name = textBlockAddEditGroup.Text;
+                            objectMyDBContext.Entry(group).State = System.Data.Entity.EntityState.Modified;
+                            objectMyDBContext.SaveChanges();
+                        }
+                        MessageBox.Show("Группа изменена");
+                        this.DialogResult = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ввод данных", "ОШИБКА", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ОШИБКА", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }

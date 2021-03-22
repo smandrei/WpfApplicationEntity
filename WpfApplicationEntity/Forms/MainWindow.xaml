@@ -14,8 +14,8 @@
                     <StackPanel>
                         <WrapPanel>
                             <Button x:Name="addGroupButton"  Content="Добавить" Margin="3" Padding="3" Click="addGroupButton_Click"></Button>
-                            <Button x:Name="editGroupButton"  Content="Удалить" Margin="3" Padding="3"></Button>
-                            <Button x:Name="deleteGroupButton"  Content="Изменить" Margin="3" Padding="3"></Button>
+                            <Button x:Name="deleteGroupButton"  Content="Удалить" Margin="3" Padding="3"></Button>
+                            <Button x:Name="editGroupButton"  Content="Изменить" Margin="3" Padding="3" Click="editGroupButton_Click"></Button>
                         </WrapPanel>
                         <DataGrid AutoGenerateColumns="False" x:Name="gropiesGrid" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single">
                             <DataGrid.Columns>

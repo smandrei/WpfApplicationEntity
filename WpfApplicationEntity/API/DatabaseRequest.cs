@@ -10,7 +10,7 @@ namespace WFAEntity.API
             public int Id { get; set; }
             public string Name { get; set; }
             public string Surname { get; set; }
-            public string Patronymic  { get; set; }
+            public string Patronymic { get; set; }
             public int IdGroup { get; set; }
             public string Group { get; set; }
             public NewStudent(int Id, string Name, string Surname, string Patronymic, int IdGroup, string Group)
@@ -51,6 +51,12 @@ namespace WFAEntity.API
         public static IEnumerable<Group> GetGroups(MyDBContext objectMyDBContext)
         {
             return objectMyDBContext.Groups.ToList();
+        }
+        public static Group GetGroupById(MyDBContext objectMyDBContext, int ID)
+        {
+            return (from tempGroup in objectMyDBContext.Groups.ToList<Group>()
+                   where tempGroup.Id == ID
+                   select tempGroup).SingleOrDefault();
         }
     }
 }

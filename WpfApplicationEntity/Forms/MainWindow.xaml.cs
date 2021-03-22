@@ -48,6 +48,23 @@ namespace WpfApplicationEntity
             if (g.ShowDialog() == true)
                 this.ShowAll();
         }
+        private void editGroupButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (gropiesGrid.SelectedItems.Count > 0)
+            {
+                for (int i = 0; i < gropiesGrid.SelectedItems.Count; i++)
+                {
+                    if (gropiesGrid.SelectedItems[i] is WFAEntity.API.Group group)
+                    {
+                        Forms.GroupWindow g = new Forms.GroupWindow(false, group.Id);
+                        if (g.ShowDialog() == true)
+                            this.ShowAll();
+                    }
+                }
+            }
+            else
+                MessageBox.Show("Выберите строку");
+        }
         #endregion
         private void ShowAll()
         {
