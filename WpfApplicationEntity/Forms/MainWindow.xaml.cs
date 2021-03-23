@@ -54,9 +54,11 @@ namespace WpfApplicationEntity
             {
                 for (int i = 0; i < gropiesGrid.SelectedItems.Count; i++)
                 {
-                    if (gropiesGrid.SelectedItems[i] is WFAEntity.API.Group group)
+                    WFAEntity.API.Group phone = gropiesGrid.SelectedItems[i] as WFAEntity.API.Group;
+                    if (phone != null)
+                        //if (gropiesGrid.SelectedItems[i] is WFAEntity.API.Group group)
                     {
-                        Forms.GroupWindow g = new Forms.GroupWindow(false, group.Id);
+                        Forms.GroupWindow g = new Forms.GroupWindow(false, phone.Id);
                         if (g.ShowDialog() == true)
                             this.ShowAll();
                     }
