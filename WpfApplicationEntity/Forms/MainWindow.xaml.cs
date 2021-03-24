@@ -26,6 +26,7 @@ namespace WpfApplicationEntity
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            try { 
             using (WFAEntity.API.MyDBContext objectMyDBContext = new WFAEntity.API.MyDBContext())
             {
                 if (objectMyDBContext.Database.Exists() == false)
@@ -38,6 +39,11 @@ namespace WpfApplicationEntity
                     objectMyDBContext.Users.Add(objectUser);
                     objectMyDBContext.SaveChanges();
                 }
+            }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             this.ShowAll();
         }
