@@ -5,7 +5,7 @@ namespace WFAEntity.API
 {
     class MyDBContext : DbContext
     {
-        public MyDBContext() : base("DbConnectStringSQLite")
+        public MyDBContext() : base("DbConnectString")
         {
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
