@@ -73,6 +73,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Forms\GroupAddEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\GroupWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,11 +88,15 @@
     <Compile Include="API\DatabaseRequest.cs" />
     <Compile Include="API\Group.cs" />
     <Compile Include="API\MyDBContext.cs" />
+    <Compile Include="API\NewStudent.cs" />
     <Compile Include="API\Student.cs" />
     <Compile Include="API\User.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Forms\GroupAddEditWindow.xaml.cs">
+      <DependentUpon>GroupAddEditWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\GroupWindow.xaml.cs">
       <DependentUpon>GroupWindow.xaml</DependentUpon>
@@ -97,8 +105,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Forms\StudentAddEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\StudentAddEditWindow.xaml.cs">
+      <DependentUpon>StudentAddEditWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

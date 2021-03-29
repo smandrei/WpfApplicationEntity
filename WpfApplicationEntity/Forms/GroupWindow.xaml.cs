@@ -52,7 +52,6 @@ namespace WpfApplicationEntity.Forms
             WFAEntity.API.Group objectGroup = new WFAEntity.API.Group();
             if (this.add_edit == true)
             {
-                textBlockAddEditGroup.Text = string.Empty;
                 objectGroup.Name = textBlockAddEditGroup.Text;
                 try
                 {

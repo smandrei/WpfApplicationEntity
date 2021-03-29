@@ -14,7 +14,6 @@ F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнени�
 F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\bin\Debug\SQLite.Designer.xml
 F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\bin\Debug\System.Data.SQLite.xml
 F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\bin\Debug\EnvDTE.xml
-F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\obj\Debug\WpfApplicationEntity.csprojAssemblyReference.cache
 F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\obj\Debug\Forms\MainWindow.baml
 F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\obj\Debug\Forms\GroupWindow.g.cs
 F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\obj\Debug\Forms\MainWindow.g.cs
@@ -29,3 +28,8 @@ F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнени�
 F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\obj\Debug\WpfApplicationEntity.csproj.CopyComplete
 F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\obj\Debug\WpfApplicationEntity.exe
 F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\obj\Debug\WpfApplicationEntity.pdb
+F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\obj\Debug\WpfApplicationEntity.csprojAssemblyReference.cache
+F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\obj\Debug\Forms\GroupAddEditWindow.g.cs
+F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\obj\Debug\Forms\StudentAddEditWindow.g.cs
+F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\obj\Debug\Forms\GroupAddEditWindow.baml
+F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\obj\Debug\Forms\StudentAddEditWindow.baml

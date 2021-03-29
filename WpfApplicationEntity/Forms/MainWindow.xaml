@@ -1,9 +1,9 @@
 ﻿<Window x:Class="WpfApplicationEntity.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Entity Framework" Height="350" Width="525" Loaded="Window_Loaded">
+        Title="Entity Framework" Height="350" Width="525" Loaded="Window_Loaded" Closed="Window_Closed">
     <Grid>
-        <TabControl>
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem x:Name="groupiesTab">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -14,7 +14,7 @@
                     <StackPanel>
                         <WrapPanel>
                             <Button x:Name="addGroupButton"  Content="Добавить" Margin="3" Padding="3" Click="addGroupButton_Click"></Button>
-                            <Button x:Name="deleteGroupButton"  Content="Удалить" Margin="3" Padding="3"></Button>
+                            <Button x:Name="deleteGroupButton"  Content="Удалить" Margin="3" Padding="3" ></Button>
                             <Button x:Name="editGroupButton"  Content="Изменить" Margin="3" Padding="3" Click="editGroupButton_Click"></Button>
                         </WrapPanel>
                         <DataGrid AutoGenerateColumns="False" x:Name="gropiesGrid" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single">
@@ -35,9 +35,9 @@
                 <TabItem.Content>
                     <StackPanel>
                         <WrapPanel>
-                            <Button x:Name="addStudentButton"  Content="Добавить" Margin="3" Padding="3"></Button>
+                            <Button x:Name="addStudentButton"  Content="Добавить" Margin="3" Padding="3" Click="addStudentButton_Click"></Button>
                             <Button x:Name="editStudentButton"  Content="Удалить" Margin="3" Padding="3"></Button>
-                            <Button x:Name="deleteStudentButton"  Content="Изменить" Margin="3" Padding="3"></Button>
+                            <Button x:Name="deleteStudentButton"  Content="Изменить" Margin="3" Padding="3" Click="deleteStudentButton_Click"></Button>
                         </WrapPanel>
                         <DataGrid AutoGenerateColumns="False" x:Name="studentsGrid">
                             <DataGrid.Columns>

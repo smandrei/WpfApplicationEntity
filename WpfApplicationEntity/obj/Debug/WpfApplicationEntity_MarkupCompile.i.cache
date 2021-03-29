@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\PGAEK\0100 Дисциплины\КПиЯП\Примеры выполнения\WpfApplicationEntity\WpfApplicationEntity\App.xaml
-21365867237
+4485609465
 
-12239829863
+15-1511442583
 181886352830
-Forms\GroupWindow.xaml;Forms\MainWindow.xaml;
+Forms\GroupAddEditWindow.xaml;Forms\GroupWindow.xaml;Forms\MainWindow.xaml;Forms\StudentAddEditWindow.xaml;
 
 False
 
