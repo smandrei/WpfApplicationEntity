@@ -29,7 +29,6 @@ namespace WpfApplicationEntity
         {
             try
             {
-                int c = 0;
                 using (WFAEntity.API.MyDBContext objectMyDBContext = new WFAEntity.API.MyDBContext())
                 {
                     if (objectMyDBContext.Database.Exists() == false)
@@ -41,6 +40,7 @@ namespace WpfApplicationEntity
                         objectUser.Password = "1111";
                         objectMyDBContext.Users.Add(objectUser);
                         objectMyDBContext.SaveChanges();
+                        WFAEntity.API.DatabaseRequest.CreateDefaultDataBase();
                     }
                 }
                 //WFAEntity.API.DatabaseRequest.CreateDefaultDataBase();
@@ -65,11 +65,11 @@ namespace WpfApplicationEntity
             {
                 for (int i = 0; i < gropiesGrid.SelectedItems.Count; i++)
                 {
-                    WFAEntity.API.Group phone = gropiesGrid.SelectedItems[i] as WFAEntity.API.Group;
-                    if (phone != null)
-                    //if (gropiesGrid.SelectedItems[i] is WFAEntity.API.Group group)
+                    WFAEntity.API.Group objectGroup = gropiesGrid.SelectedItems[i] as WFAEntity.API.Group;
+                    if (objectGroup != null)
+                    //if (gropiesGrid.SelectedItems[i] is WFAEntity.API.Group students)
                     {
-                        Forms.GroupWindow g = new Forms.GroupWindow(false, phone.Id);
+                        Forms.GroupWindow g = new Forms.GroupWindow(false, objectGroup.Id);
                         if (g.ShowDialog() == true)
                             this.ShowAll(SELECTED_TAB.GROUP);
                     }
@@ -77,6 +77,33 @@ namespace WpfApplicationEntity
             }
             else
                 MessageBox.Show("Выберите строку");
+        }
+        private void deleteGroupButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (gropiesGrid.SelectedItems.Count > 0)
+            {
+                for (int i = 0; i < gropiesGrid.SelectedItems.Count; i++)
+                {
+                    WFAEntity.API.Group objectGroup = gropiesGrid.SelectedItems[i] as WFAEntity.API.Group;
+                    if (objectGroup != null)
+                        try
+                        {
+                            using (WFAEntity.API.MyDBContext objectMyDBContext =
+                                new WFAEntity.API.MyDBContext())
+                            {
+                                WFAEntity.API.Group group = WFAEntity.API.DatabaseRequest.GetGroupById(objectMyDBContext, objectGroup.Id);
+                                objectMyDBContext.Groups.Attach(group);
+                                objectMyDBContext.Groups.Remove(group);
+                                objectMyDBContext.SaveChanges();
+                            }
+                            this.ShowAll(SELECTED_TAB.GROUP);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "ОШИБКА", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                }
+            }
         }
         #endregion Группа
         #region Студент //------------------------------------------------------------
@@ -86,10 +113,8 @@ namespace WpfApplicationEntity
             if (g.ShowDialog() == true)
                 this.ShowAll(SELECTED_TAB.STUDENT);
         }
-
-        private void deleteStudentButton_Click(object sender, RoutedEventArgs e)
+        private void editStudentButton_Click(object sender, RoutedEventArgs e)
         {
-            //int x = 0;
             if (studentsGrid.SelectedItems.Count > 0)
             {
                 for (int i = 0; i < studentsGrid.SelectedItems.Count; i++)
@@ -106,7 +131,35 @@ namespace WpfApplicationEntity
             else
                 MessageBox.Show("Выберите строку");
         }
+        private void deleteStudentButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (studentsGrid.SelectedItems.Count > 0)
+            {
+                for (int i = 0; i < studentsGrid.SelectedItems.Count; i++)
+                {
+                    WFAEntity.API.Student objectStudent = studentsGrid.SelectedItems[i] as WFAEntity.API.Student;
+                    if (objectStudent != null)
+                        try
+                        {
+                            using (WFAEntity.API.MyDBContext objectMyDBContext =
+                                new WFAEntity.API.MyDBContext())
+                            {
+                                WFAEntity.API.Student student = WFAEntity.API.DatabaseRequest.GetStudentById(objectMyDBContext, objectStudent.Id);
+                                objectMyDBContext.Students.Attach(student);
+                                objectMyDBContext.Students.Remove(student);
+                                objectMyDBContext.SaveChanges();
+                            }
+                            this.ShowAll(SELECTED_TAB.STUDENT);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "ОШИБКА", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                }
+            }
+        }
         #endregion Студент
+        #region Window //------------------------------------------------------------
         private void ShowAll(SELECTED_TAB tab)
         {
             try
@@ -134,7 +187,6 @@ namespace WpfApplicationEntity
         {
             GC.Collect();
         }
-
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -150,12 +202,13 @@ namespace WpfApplicationEntity
                         break;
                     default:
                         return;
-                }                
+                }
             }
             catch//(Exception ex)
             {
                 //MessageBox.Show(ex.Message);
             }
         }
+        #endregion Window //------------------------------------------------------------
     }
 }

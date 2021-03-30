@@ -14,7 +14,7 @@
                     <StackPanel>
                         <WrapPanel>
                             <Button x:Name="addGroupButton"  Content="Добавить" Margin="3" Padding="3" Click="addGroupButton_Click"></Button>
-                            <Button x:Name="deleteGroupButton"  Content="Удалить" Margin="3" Padding="3" ></Button>
+                            <Button x:Name="deleteGroupButton"  Content="Удалить" Margin="3" Padding="3" Click="deleteGroupButton_Click" ></Button>
                             <Button x:Name="editGroupButton"  Content="Изменить" Margin="3" Padding="3" Click="editGroupButton_Click"></Button>
                         </WrapPanel>
                         <DataGrid AutoGenerateColumns="False" x:Name="gropiesGrid" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single">
@@ -36,10 +36,10 @@
                     <StackPanel>
                         <WrapPanel>
                             <Button x:Name="addStudentButton"  Content="Добавить" Margin="3" Padding="3" Click="addStudentButton_Click"></Button>
-                            <Button x:Name="editStudentButton"  Content="Удалить" Margin="3" Padding="3"></Button>
-                            <Button x:Name="deleteStudentButton"  Content="Изменить" Margin="3" Padding="3" Click="deleteStudentButton_Click"></Button>
+                            <Button x:Name="deleteStudentButton"  Content="Удалить" Margin="3" Padding="3" Click="deleteStudentButton_Click"></Button>
+                            <Button x:Name="editStudentButton"  Content="Изменить" Margin="3" Padding="3" Click="editStudentButton_Click"></Button>
                         </WrapPanel>
-                        <DataGrid AutoGenerateColumns="False" x:Name="studentsGrid">
+                        <DataGrid AutoGenerateColumns="False" x:Name="studentsGrid" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" Visibility="Visible"/>
                                 <DataGridTextColumn Binding="{Binding Surname}" Header="Фамилия"/>
@@ -65,7 +65,7 @@
                             <Button x:Name="editUserButton"  Content="Удалить" Margin="3" Padding="3"></Button>
                             <Button x:Name="deleteUserButton"  Content="Изменить" Margin="3" Padding="3"></Button>
                         </WrapPanel>
-                        <DataGrid AutoGenerateColumns="False" x:Name="usersGrid">
+                        <DataGrid AutoGenerateColumns="False" x:Name="usersGrid" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" Visibility="Hidden"/>
                                 <DataGridTextColumn Binding="{Binding Name}" Header="Пользователь"/>

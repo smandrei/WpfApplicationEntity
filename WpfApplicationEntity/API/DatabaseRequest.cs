@@ -42,7 +42,7 @@ namespace WFAEntity.API
             return (
                 from tmpStudent in objectMyDBContext.Students.ToList<Student>()
                 from tmpGroup in objectMyDBContext.Groups.ToList<Group>()
-                where tmpStudent.Id == tmpGroup.Id
+                where tmpStudent.GroupId == tmpGroup.Id
                 select (
                 new NewStudent(tmpStudent.Id, tmpStudent.Name, tmpStudent.Surname, tmpStudent.Patronymic, tmpGroup.Id, tmpGroup.Name)
                 )
@@ -111,7 +111,6 @@ namespace WFAEntity.API
         }
         public static void ChangeDefaultDataBase()
         {
-            int w = 0;
             using (WFAEntity.API.MyDBContext objectMyDBContext = new WFAEntity.API.MyDBContext())
             {
                 Student objectStudent5 = WFAEntity.API.DatabaseRequest.GetStudentById(objectMyDBContext, 2);

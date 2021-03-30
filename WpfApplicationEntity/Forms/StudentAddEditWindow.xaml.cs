@@ -18,8 +18,8 @@ namespace WpfApplicationEntity.Forms
     /// </summary>
     public partial class StudentAddEditWindow : Window
     {
-        private bool add_edit;
-        private int id;
+        private readonly bool add_edit;
+        private readonly int id;
         public StudentAddEditWindow()
         {
             InitializeComponent();
@@ -45,7 +45,7 @@ namespace WpfApplicationEntity.Forms
                 comboBoxAddEditGroup.Text = "{Binging Name}";
             }
         }
-        private bool IsDataCorrcet()
+        private bool IsDataCorrect()
         {
             return (textBlockAddEditSurname.Text != string.Empty) ||
                 (textBlockAddEditName.Text != string.Empty) ||
@@ -53,58 +53,32 @@ namespace WpfApplicationEntity.Forms
         }
         private void ButtonAddEditGroup_Click(object sender, RoutedEventArgs e)
         {
-            int x = 0;
             try
             {
-                using (WFAEntity.API.MyDBContext objectMyDBContext =
-                            new WFAEntity.API.MyDBContext())
+                if (this.IsDataCorrect() == true)                    
                 {
-                    if (this.IsDataCorrcet() == true)
+                    using (WFAEntity.API.MyDBContext objectMyDBContext =
+                            new WFAEntity.API.MyDBContext())
                     {
-                        WFAEntity.API.Student objectStudent = new WFAEntity.API.Student();
-                        objectStudent.Surname = textBlockAddEditSurname.Text;
-                        objectStudent.Name = textBlockAddEditName.Text;
-                        objectStudent.Patronymic = textBlockAddEditPatranomyc.Text;
-                        WFAEntity.API.Group objectGroup = new WFAEntity.API.Group(); 
-                        objectGroup = (WFAEntity.API.Group)comboBoxAddEditGroup.SelectedItem;
-                        objectStudent.Group = objectGroup;
+                        WFAEntity.API.Student objectStudent = new WFAEntity.API.Student(
+                            textBlockAddEditName.Text,
+                            textBlockAddEditSurname.Text,
+                            textBlockAddEditPatranomyc.Text,
+                            (WFAEntity.API.Group)comboBoxAddEditGroup.SelectedItem
+                            );
                         if (this.add_edit == true)
                         {
                             objectMyDBContext.Students.Add(objectStudent);
-                            objectMyDBContext.SaveChanges();
-                            /*WFAEntity.API.Student objectStudent = new WFAEntity.API.Student();
-                            objectStudent.Surname = textBlockAddEditSurname.Text;
-                            objectStudent.Name = textBlockAddEditName.Text;
-                            objectStudent.Patronymic = textBlockAddEditPatranomyc.Text;
-                            WFAEntity.API.Group tg = new WFAEntity.API.Group();
-                            tg.Id = 4;
-                            tg.Name = "------";
-                            objectStudent.Group = tg;//(WFAEntity.API.Group)comboBoxAddEditGroup.SelectedItem;
-                            objectMyDBContext.Students.Add(objectStudent);
-                            objectMyDBContext.SaveChanges();*/
                         }
                         else
                         {
+                            objectStudent.Id = WFAEntity.API.DatabaseRequest.GetStudentById(objectMyDBContext, this.id).Id;
                             WFAEntity.API.Student objectStudentFromDataBase = new WFAEntity.API.Student();
                             objectStudentFromDataBase = WFAEntity.API.DatabaseRequest.GetStudentById(objectMyDBContext, this.id);
-                            objectStudent.Id = objectStudentFromDataBase.Id;
                             objectMyDBContext.Entry(objectStudentFromDataBase).CurrentValues.SetValues(objectStudent);
-
-                            WFAEntity.API.Group objectGroupFromDataBase = WFAEntity.API.DatabaseRequest.GetGroupById(objectMyDBContext, objectStudentFromDataBase.IdGroup);
-                            //WFAEntity.API.Group newGroup = new WFAEntity.API.Group();
-                            objectGroup.Id = objectGroupFromDataBase.Id;
-                            objectMyDBContext.Entry(objectGroupFromDataBase).CurrentValues.SetValues(objectGroup);
                             objectMyDBContext.SaveChanges();
-                            /*WFAEntity.API.Student objectStudent = new WFAEntity.API.Student();
-                            objectStudent = WFAEntity.API.DatabaseRequest.GetStudentById(objectMyDBContext, this.id);
-                            objectStudent.Surname = textBlockAddEditSurname.Text;
-                            objectStudent.Name = textBlockAddEditName.Text;
-                            objectStudent.Patronymic = textBlockAddEditPatranomyc.Text;
-                            objectStudent.Group = (WFAEntity.API.Group)comboBoxAddEditGroup.SelectedItem;
-                            objectMyDBContext.Students.Attach(objectStudent);
-                            objectMyDBContext.Entry(objectStudent).State = System.Data.Entity.EntityState.Modified;
-                            objectMyDBContext.SaveChanges();*/
                         }
+                        objectMyDBContext.SaveChanges();
                         this.DialogResult = true;
                     }
                 }

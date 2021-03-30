@@ -10,6 +10,12 @@ namespace WFAEntity.API
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<Group>()
+
+          /*  modelBuilder.Entity<Student>()
+                .HasOne<Group>()
+                .WithMany()
+                .HasForeignKey(p => p.IdGroup);*/
             //var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<MyDBContext>(modelBuilder);
             //Database.SetInitializer(sqliteConnectionInitializer);
             //System.Windows.MessageBox.Show("--");

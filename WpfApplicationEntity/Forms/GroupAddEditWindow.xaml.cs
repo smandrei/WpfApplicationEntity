@@ -47,39 +47,26 @@ namespace WpfApplicationEntity.Forms
         }
         private void ButtonAddEditGroup_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("--------");
-            int x = 0;
             try
             {
-                MessageBox.Show("--------");
-                using (WFAEntity.API.MyDBContext objectMyDBContext =
-                            new WFAEntity.API.MyDBContext())
+                if (this.IsDataCorrcet() == true)
                 {
-                    if (this.IsDataCorrcet() == true)
+                    using (WFAEntity.API.MyDBContext objectMyDBContext =
+                            new WFAEntity.API.MyDBContext())
                     {
                         WFAEntity.API.Group objectGroup = new WFAEntity.API.Group();
                         objectGroup.Name = textBlockAddEditGroup.Text;
                         if (this.add_edit == true)
                         {
                             objectMyDBContext.Groups.Add(objectGroup);
-                            objectMyDBContext.SaveChanges();
-                            /*WFAEntity.API.Group objectGroup = new WFAEntity.API.Group();
-                            objectGroup.Name = textBlockAddEditGroup.Text;
-                            objectMyDBContext.Groups.Add(objectGroup);
-                            objectMyDBContext.SaveChanges();*/
                         }
                         else
                         {
                             WFAEntity.API.Group objectGroupFromDataBase = new WFAEntity.API.Group();
                             objectGroupFromDataBase = WFAEntity.API.DatabaseRequest.GetGroupById(objectMyDBContext, this.id);
                             objectMyDBContext.Entry(objectGroupFromDataBase).CurrentValues.SetValues(objectGroup);
-                            objectMyDBContext.SaveChanges();
-                            /*WFAEntity.API.Group objectGroup = new WFAEntity.API.Group();
-                            objectGroup = WFAEntity.API.DatabaseRequest.GetGroupById(objectMyDBContext, this.id);
-                            objectGroup.Name = textBlockAddEditGroup.Text;
-                            objectMyDBContext.Entry(objectGroup).State = System.Data.Entity.EntityState.Modified;
-                            objectMyDBContext.SaveChanges();*/
                         }
+                        objectMyDBContext.SaveChanges();
                         this.DialogResult = true;
                     }
                 }
